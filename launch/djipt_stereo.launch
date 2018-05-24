@@ -1,0 +1,35 @@
+<launch>
+    <node pkg="djiros" type="djipt_node" name="djiros" output="screen" launch-prefix="">
+        <param name="log_level" type="string" value="info"/>
+        <param name="serial_name" type="string" value="/dev/ttyTHS2"/>
+        <param name="baud_rate" type="int" value="921600"/>
+        <param name="app_id" type="int" value="$(env DJIROS_APPID)"/>
+        <param name="enc_key" type="string" value="$(env DJIROS_ENCKEY)"/> 
+        <param name="app_version" type="int" value="1"/>
+        <param name="sensor_mode" type="bool" value="false"/>
+        <param name="align_with_fmu" type="bool" value="true"/>
+
+        <rosparam>
+            # common setting and default individual settings
+            verbose_output: true
+            cam_cnt: 2
+            frameRate:  30
+            gain: 1.0
+            is_auto_shutter: false
+            is_sync: false
+            shutter: 5.0
+            brightness: 0.1
+            exposure: 0.4
+            gain: 1.0
+            fast_mode: false
+
+            # individual setting for camera 0
+            camera0:
+                serialNum: 17221121
+                topic: image_raw
+            camera1:
+                serialNum: 17221110
+                topic: image_raw1
+        </rosparam>
+    </node> 
+</launch>
